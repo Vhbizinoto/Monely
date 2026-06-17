@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monely - Dashboard</title>
+    <link rel="icon" href="images/logo.png" type="image/png">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+</head>
+
+<body class="bg-background text-text-main font-sans antialiased flex flex-col md:flex-row h-screen overflow-hidden">
+
+    <aside
+        class="w-full md:w-64 bg-sidebar/90 backdrop-blur-md flex flex-col justify-between flex-shrink-0 border-b md:border-b-0 md:border-r border-gray-800 z-20">
+        <div class="flex flex-col h-full">
+
+            <div class="p-4 md:p-6 flex items-center gap-3 shrink-0">
+                <img src="images/logo.png" alt="Monely Logo" class="h-10 md:h-12 w-auto object-contain">
+                <span class="text-2xl font-bold tracking-wide">Monely</span>
+            </div>
+
+            <nav
+                class="px-4 pb-4 md:pb-0 flex flex-row md:flex-col gap-2 overflow-x-auto scrollbar-hide md:mt-4 shrink-0">
+                <a href="#"
+                    class="flex items-center gap-3 px-4 py-3 bg-primary-bg text-primary rounded-lg font-medium transition-colors whitespace-nowrap focus:outline-none focus:ring-2 focus:ring-primary">
+                    <i class="ph ph-house text-xl"></i>
+                    Dashboard
+                </a>
+                <a href="#"
+                    class="flex items-center gap-3 px-4 py-3 text-text-muted hover:text-white transition-colors rounded-lg hover:bg-gray-800/50 whitespace-nowrap focus:outline-none focus:ring-2 focus:ring-primary">
+                    <i class="ph ph-arrows-left-right text-xl"></i>
+                    Transações
+                </a>
+                <a href="#"
+                    class="flex items-center gap-3 px-4 py-3 text-text-muted hover:text-white transition-colors rounded-lg hover:bg-gray-800/50 whitespace-nowrap focus:outline-none focus:ring-2 focus:ring-primary">
+                    <i class="ph ph-wallet text-xl"></i>
+                    Contas
+                </a>
+                <a href="#"
+                    class="flex items-center gap-3 px-4 py-3 text-text-muted hover:text-white transition-colors rounded-lg hover:bg-gray-800/50 whitespace-nowrap focus:outline-none focus:ring-2 focus:ring-primary">
+                    <i class="ph ph-chart-bar text-xl"></i>
+                    Orçamento
+                </a>
+                <a href="#"
+                    class="flex items-center gap-3 px-4 py-3 text-text-muted hover:text-white transition-colors rounded-lg hover:bg-gray-800/50 whitespace-nowrap focus:outline-none focus:ring-2 focus:ring-primary">
+                    <i class="ph ph-trend-up text-xl"></i>
+                    Metas
+                </a>
+                <a href="#"
+                    class="flex items-center gap-3 px-4 py-3 text-text-muted hover:text-white transition-colors rounded-lg hover:bg-gray-800/50 whitespace-nowrap focus:outline-none focus:ring-2 focus:ring-primary">
+                    <i class="ph ph-book-open text-xl"></i>
+                    Relatórios
+                </a>
+                <a href="#"
+                    class="flex items-center gap-3 px-4 py-3 text-text-muted hover:text-white transition-colors rounded-lg hover:bg-gray-800/50 whitespace-nowrap focus:outline-none focus:ring-2 focus:ring-primary">
+                    <i class="ph ph-gear text-xl"></i>
+                    Configurações
+                </a>
+            </nav>
+        </div>
+
+        <div class="hidden md:block p-6 mt-auto">
+            <div class="bg-gradient-to-br from-gray-800 to-gray-900 rounded-xl p-5 border border-gray-700 shadow-lg">
+                <h4 class="font-semibold text-sm mb-2 text-white">Upgrade para Premium</h4>
+                <p class="text-xs text-gray-400 mb-4 leading-relaxed">Tenha acesso a recursos exclusivos.</p>
+                <button
+                    class="w-full bg-gradient-to-r from-primary to-emerald-400 hover:from-emerald-400 hover:to-primary text-black font-semibold py-2.5 rounded-lg text-sm transition-colors shadow-md focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-gray-900">
+                    Quero Upgrade
+                </button>
+            </div>
+        </div>
+    </aside>
+
+    <main class="flex-1 overflow-y-auto p-4 md:p-8 lg:p-10">
+
+        <header
+            class="sticky top-0 z-10 bg-background/80 backdrop-blur-md pt-4 pb-4 -mx-4 px-4 md:-mx-8 md:px-8 lg:-mx-10 lg:px-10 border-b border-gray-800/50 flex flex-col-reverse md:flex-row justify-between items-start md:items-center mb-8 lg:mb-10 gap-6">
+            <div>
+                <h1 class="text-2xl md:text-3xl font-bold text-white mb-1 md:mb-2">Bem-vindo, Vitor!</h1>
+                <p class="text-sm md:text-base text-text-muted">Aqui está o resumo das suas finanças</p>
+            </div>
+
+            <div class="flex items-center gap-6">
+                <button class="text-text-muted hover:text-white transition-colors relative">
+                    <i class="ph ph-bell text-2xl"></i>
+                    <span class="absolute top-0 right-0 w-2 h-2 bg-primary rounded-full"></span>
+                </button>
+
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-full bg-gray-300 flex items-center justify-center overflow-hidden">
+                    </div>
+                    <div>
+                        <p class="font-semibold text-sm">Vitor Hugo</p>
+                        <p class="text-xs text-text-muted">vitor@fiap.com.br</p>
+                    </div>
+                    <button class="ml-2 text-text-muted hover:text-white">
+                        <i class="ph ph-caret-down"></i>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+            <div
+                class="bg-card rounded-2xl p-6 border border-gray-800 relative overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-black/40">
+                <div class="flex justify-between items-start mb-4">
+                    <p class="text-text-muted font-medium">Saldo total</p>
+                    <div class="w-8 h-8 rounded-lg bg-primary-bg flex items-center justify-center text-primary">
+                        <i class="ph ph-arrow-down-left text-lg"></i>
+                    </div>
+                </div>
+                <h2 class="text-3xl font-bold text-white mb-4">R$ 10.000,00</h2>
+                <p class="text-sm">
+                    <span class="text-primary font-medium">+12.5%</span>
+                    <span class="text-text-muted">em relação ao mês passado</span>
+                </p>
+            </div>
+
+            <div
+                class="bg-card rounded-2xl p-6 border border-gray-800 relative overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-black/40">
+                <div class="flex justify-between items-start mb-4">
+                    <p class="text-text-muted font-medium">Entradas</p>
+                    <div class="w-8 h-8 rounded-lg bg-primary-bg flex items-center justify-center text-primary">
+                        <i class="ph ph-files text-lg"></i>
+                    </div>
+                </div>
+                <h2 class="text-3xl font-bold text-white mb-4">R$ 8.750,00</h2>
+                <p class="text-sm">
+                    <span class="text-primary font-medium">+8.2%</span>
+                    <span class="text-text-muted">em relação ao mês passado</span>
+                </p>
+            </div>
+
+            <div
+                class="bg-card rounded-2xl p-6 border border-gray-800 relative overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-black/40">
+                <div class="flex justify-between items-start mb-4">
+                    <p class="text-text-muted font-medium">Saídas</p>
+                    <div class="w-8 h-8 rounded-lg bg-danger-bg flex items-center justify-center text-danger">
+                        <i class="ph ph-file-minus text-lg"></i>
+                    </div>
+                </div>
+                <h2 class="text-3xl font-bold text-white mb-4">R$ 5.500,00</h2>
+                <p class="text-sm">
+                    <span class="text-danger font-medium">-4.3%</span>
+                    <span class="text-text-muted">em relação ao mês passado</span>
+                </p>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+
+            <div
+                class="lg:col-span-2 bg-card rounded-2xl p-6 border border-gray-800 flex flex-col h-full transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-black/40">
+                <h3 class="font-bold text-lg text-white mb-6">Resumo do mês</h3>
+
+                <div class="flex flex-col lg:flex-row gap-8 flex-1">
+                    <div class="flex-1 flex items-end h-48 lg:h-auto min-h-[200px]">
+                        <div class="w-full flex items-end h-full gap-[2px]">
+                            <div
+                                class="flex-1 bg-chart-red h-[60%] rounded-t-sm hover:opacity-80 transition-opacity relative group cursor-pointer">
+                                <div
+                                    class="absolute -top-10 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity bg-gray-800 text-white text-xs py-1 px-2 rounded whitespace-nowrap pointer-events-none z-10 shadow-lg">
+                                    R$ 1.320,00</div>
+                            </div>
+                            <div
+                                class="flex-1 bg-chart-purple h-[80%] rounded-t-sm hover:opacity-80 transition-opacity relative group cursor-pointer">
+                                <div
+                                    class="absolute -top-10 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity bg-gray-800 text-white text-xs py-1 px-2 rounded whitespace-nowrap pointer-events-none z-10 shadow-lg">
+                                    R$ 1.760,00</div>
+                            </div>
+                            <div
+                                class="flex-1 bg-chart-orange h-[50%] rounded-t-sm hover:opacity-80 transition-opacity relative group cursor-pointer">
+                                <div
+                                    class="absolute -top-10 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity bg-gray-800 text-white text-xs py-1 px-2 rounded whitespace-nowrap pointer-events-none z-10 shadow-lg">
+                                    R$ 880,00</div>
+                            </div>
+                            <div
+                                class="flex-1 bg-chart-green h-[50%] rounded-t-sm hover:opacity-80 transition-opacity relative group cursor-pointer">
+                                <div
+                                    class="absolute -top-10 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity bg-gray-800 text-white text-xs py-1 px-2 rounded whitespace-nowrap pointer-events-none z-10 shadow-lg">
+                                    R$ 880,00</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col justify-between w-full lg:w-64 shrink-0">
+                        <div class="flex flex-col gap-3">
+                            <div class="flex items-center gap-3 text-sm">
+                                <span class="w-3 h-3 rounded-sm bg-chart-purple"></span>
+                                <span class="text-text-muted flex-1">Moradia</span>
+                                <span class="text-text-muted">32%</span>
+                                <span class="text-white font-medium w-20 text-right">R$ 1.760,00</span>
+                            </div>
+                            <div class="flex items-center gap-3 text-sm">
+                                <span class="w-3 h-3 rounded-sm bg-chart-red"></span>
+                                <span class="text-text-muted flex-1">Alimentação</span>
+                                <span class="text-text-muted">24%</span>
+                                <span class="text-white font-medium w-20 text-right">R$ 1.320,00</span>
+                            </div>
+                            <div class="flex items-center gap-3 text-sm">
+                                <span class="w-3 h-3 rounded-sm bg-chart-green"></span>
+                                <span class="text-text-muted flex-1">Transporte</span>
+                                <span class="text-text-muted">22%</span>
+                                <span class="text-white font-medium w-20 text-right">R$ 880,00</span>
+                            </div>
+                            <div class="flex items-center gap-3 text-sm">
+                                <span class="w-3 h-3 rounded-sm bg-chart-orange"></span>
+                                <span class="text-text-muted flex-1">Saúde</span>
+                                <span class="text-text-muted">22%</span>
+                                <span class="text-white font-medium w-20 text-right">R$ 880,00</span>
+                            </div>
+                        </div>
+
+                        <div class="mt-8 pt-6 border-t border-gray-800/50 flex flex-col items-center lg:items-end">
+                            <p class="text-3xl font-bold text-white mb-1">R$ 4.840,00</p>
+                            <p class="text-sm text-text-muted">Total de Gastos</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div
+                class="bg-card rounded-2xl p-6 border border-gray-800 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-black/40">
+                <div class="flex justify-between items-center mb-6">
+                    <h3 class="font-bold text-lg text-white">Últimas transações</h3>
+                    <a href="#" class="text-primary text-sm hover:underline">Ver todas</a>
+                </div>
+
+                <div class="flex flex-col gap-6">
+                    <div class="flex justify-between items-center">
+                        <div class="flex items-center gap-4">
+                            <div
+                                class="w-10 h-10 rounded-lg bg-[#2A241E] text-chart-orange flex items-center justify-center">
+                                <i class="ph ph-shopping-cart text-xl"></i>
+                            </div>
+                            <div>
+                                <p class="font-semibold text-white">Supermercado Teste</p>
+                                <p class="text-xs text-text-muted">Alimentação</p>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <p class="font-semibold text-white">-R$ 198,50</p>
+                            <p class="text-xs text-text-muted">Hoje</p>
+                        </div>
+                    </div>
+
+                    <div class="flex justify-between items-center">
+                        <div class="flex items-center gap-4">
+                            <div
+                                class="w-10 h-10 rounded-lg bg-primary-bg text-primary flex items-center justify-center">
+                                <i class="ph ph-arrow-down text-xl"></i>
+                            </div>
+                            <div>
+                                <p class="font-semibold text-white">Salário</p>
+                                <p class="text-xs text-text-muted">Salário</p>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <p class="font-semibold text-primary">+R$ 5.250,00</p>
+                            <p class="text-xs text-text-muted">Ontem</p>
+                        </div>
+                    </div>
+
+                    <div class="flex justify-between items-center">
+                        <div class="flex items-center gap-4">
+                            <div
+                                class="w-10 h-10 rounded-lg bg-[#2A241E] text-chart-orange flex items-center justify-center">
+                                <i class="ph ph-guitar text-xl"></i>
+                            </div>
+                            <div>
+                                <p class="font-semibold text-white">Show</p>
+                                <p class="text-xs text-text-muted">Entretenimento</p>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <p class="font-semibold text-white">-R$ 1.500,00</p>
+                            <p class="text-xs text-text-muted">15/04/2026</p>
+                        </div>
+                    </div>
+
+                    <div class="flex justify-between items-center">
+                        <div class="flex items-center gap-4">
+                            <div
+                                class="w-10 h-10 rounded-lg bg-primary-bg text-primary flex items-center justify-center">
+                                <i class="ph ph-arrow-down text-xl"></i>
+                            </div>
+                            <div>
+                                <p class="font-semibold text-white">Freelance Projeto</p>
+                                <p class="text-xs text-text-muted">Trabalho</p>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <p class="font-semibold text-primary">+R$ 1.000,00</p>
+                            <p class="text-xs text-text-muted">05/04/2026</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+</body>
+
+</html>
