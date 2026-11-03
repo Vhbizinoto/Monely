@@ -30,8 +30,64 @@
   background: #2A2E39;
 }
 
-/* Inputs de data no tema escuro */
+/* Controles nativos (data, mês, select) no tema escuro */
 input[type='date'],
-input[type='month'] {
+input[type='month'],
+select {
   color-scheme: dark;
+}
+
+/* Esconde a seta nativa; o componente Select desenha a própria */
+select {
+  appearance: none;
+}
+
+select option {
+  background-color: #1F222A;
+  color: #FFFFFF;
+}
+
+/* Lista do select estilizada nos navegadores que suportam (Chrome/Edge 135+).
+   Nos outros, fica a lista nativa em tema escuro. */
+@supports (appearance: base-select) {
+  select,
+  ::picker(select) {
+    appearance: base-select;
+  }
+
+  select::picker-icon {
+    display: none;
+  }
+
+  ::picker(select) {
+    margin-top: 6px;
+    padding: 4px;
+    background-color: #1F222A;
+    border: 1px solid #374151;
+    border-radius: 12px;
+    box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.4);
+  }
+
+  select option {
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 0.875rem;
+    cursor: pointer;
+  }
+
+  select option::checkmark {
+    display: none;
+  }
+
+  select option:hover,
+  select option:focus-visible {
+    background-color: #2A2E39;
+    outline: none;
+  }
+
+  select option:checked {
+    background-color: #0D2B22;
+    color: #00E08F;
+    font-weight: 500;
+  }
 }

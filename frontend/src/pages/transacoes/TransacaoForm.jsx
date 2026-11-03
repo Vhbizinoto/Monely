@@ -1,17 +1,31 @@
-import { ArrowDown, ArrowUp, Wallet } from '@phosphor-icons/react'
+import { useParams } from 'react-router-dom'
+import { ArrowDown, ArrowUp, ChartBar, Wallet } from '@phosphor-icons/react'
 import PageHeader from '../../components/layout/PageHeader'
+import TransacaoItem from '../../components/transacoes/TransacaoItem'
 import Button from '../../components/ui/Button'
+import Card from '../../components/ui/Card'
 import { EmptyState, ErrorState, Loading } from '../../components/ui/Feedback'
 import FormCard from '../../components/ui/FormCard'
 import { Input, Select } from '../../components/ui/FormField'
+import { InfoCard, InfoRow, PreviewSection } from '../../components/ui/PreviewPanel'
+import ProgressBar from '../../components/ui/ProgressBar'
 import { categoriasPorTipo } from '../../constants/categorias'
 import useEntityForm from '../../hooks/useEntityForm'
 import useFetch from '../../hooks/useFetch'
 import contaService from '../../services/contaService'
+import orcamentoService from '../../services/orcamentoService'
 import transacaoService from '../../services/transacaoService'
-import { toISODate } from '../../utils/format'
+import { corDoUso, efeitoNoSaldo, gastoNaCategoria, saldoDaConta } from '../../utils/finance'
+import { formatCurrency, formatMonth, toISODate } from '../../utils/format'
 
-const listarContas = () => contaService.listar()
+const carregarContexto = async () => {
+  const [contas, transacoes, orcamentos] = await Promise.all([
+    contaService.listar(),
+    transacaoService.listar(),
+    orcamentoService.listar(),
+  ])
+  return { contas, transacoes, orcamentos }
+}
 
 const validar = (v) => ({
   descricao: !v.descricao.trim() && 'Informe uma descrição.',
@@ -23,7 +37,8 @@ const validar = (v) => ({
 
 // Página única para inserir (/transacoes/nova) e atualizar (/transacoes/:id/editar)
 export default function TransacaoForm() {
-  const contas = useFetch(listarContas, [])
+  const { id } = useParams()
+  const contexto = useFetch(carregarContexto)
   const { values, errors, handleChange, setValues, editando, carregando, erroCarregamento, enviando, handleSubmit } =
     useEntityForm({
       service: transacaoService,
@@ -38,10 +53,12 @@ export default function TransacaoForm() {
   const titulo = editando ? 'Editar transação' : 'Nova transação'
   const header = <PageHeader titulo={titulo} subtitulo="Registre uma entrada ou saída de dinheiro" />
 
-  if (carregando || contas.loading) return <>{header}<Loading /></>
-  if (erroCarregamento || contas.error) return <>{header}<ErrorState mensagem={erroCarregamento || contas.error} /></>
+  if (carregando || contexto.loading) return <>{header}<Loading /></>
+  if (erroCarregamento || contexto.error) return <>{header}<ErrorState mensagem={erroCarregamento || contexto.error} /></>
 
-  if (contas.data.length === 0) {
+  const { contas, transacoes, orcamentos } = contexto.data
+
+  if (contas.length === 0) {
     return (
       <>
         {header}
@@ -58,10 +75,43 @@ export default function TransacaoForm() {
   // Trocar o tipo limpa a categoria, porque as listas são diferentes
   const trocarTipo = (tipo) => setValues((v) => ({ ...v, tipo, categoria: v.tipo === tipo ? v.categoria : '' }))
 
+  // Na edição, desconsidera a versão salva desta transação nos cálculos de contexto
+  const outras = editando ? transacoes.filter((t) => String(t.id) !== id) : transacoes
+
+  const aside = (
+    <>
+      <PreviewSection titulo="Pré-visualização">
+        <Card hover={false}>
+          <TransacaoItem
+            transacao={{
+              ...values,
+              descricao: values.descricao.trim() || 'Descrição',
+              categoria: values.categoria || 'Outros',
+              valor: Number(values.valor) || 0,
+            }}
+            conta={contas.find((c) => String(c.id) === values.contaId)}
+          />
+        </Card>
+      </PreviewSection>
+
+      <ImpactoNaConta conta={contas.find((c) => String(c.id) === values.contaId)} transacoes={transacoes} outras={outras} valores={values} />
+
+      {values.tipo === 'DESPESA' && values.categoria && values.data && (
+        <ImpactoNoOrcamento orcamentos={orcamentos} outras={outras} valores={values} />
+      )}
+    </>
+  )
+
   return (
     <>
       {header}
-      <FormCard onSubmit={handleSubmit} enviando={enviando} voltarPara="/transacoes" textoSalvar={editando ? 'Salvar alterações' : 'Adicionar transação'}>
+      <FormCard
+        onSubmit={handleSubmit}
+        enviando={enviando}
+        voltarPara="/transacoes"
+        textoSalvar={editando ? 'Salvar alterações' : 'Adicionar transação'}
+        aside={aside}
+      >
         <fieldset>
           <legend className="text-sm font-medium text-gray-300 mb-1.5">Tipo</legend>
           <div className="grid grid-cols-2 gap-3">
@@ -95,13 +145,89 @@ export default function TransacaoForm() {
             label="Conta"
             name="contaId"
             placeholder="Selecione"
-            options={contas.data.map((c) => ({ value: String(c.id), label: c.nome }))}
+            options={contas.map((c) => ({ value: String(c.id), label: c.nome }))}
             value={values.contaId}
             onChange={handleChange}
             error={errors.contaId}
           />
         </div>
       </FormCard>
+    </>
+  )
+}
+
+// Saldo da conta escolhida antes e depois de salvar
+function ImpactoNaConta({ conta, transacoes, outras, valores }) {
+  return (
+    <PreviewSection titulo="Impacto na conta" icon={Wallet}>
+      <InfoCard>
+        {conta ? (
+          <SaldoAntesDepois conta={conta} transacoes={transacoes} outras={outras} valores={valores} />
+        ) : (
+          <p className="text-sm text-text-muted">Escolha a conta para ver como o saldo vai ficar.</p>
+        )}
+      </InfoCard>
+    </PreviewSection>
+  )
+}
+
+function SaldoAntesDepois({ conta, transacoes, outras, valores }) {
+  const saldoAtual = saldoDaConta(conta, transacoes)
+  const saldoDepois = saldoDaConta(conta, outras) + efeitoNoSaldo(valores)
+  const variacao = saldoDepois - saldoAtual
+  const sinal = variacao > 0 ? '+' : variacao < 0 ? '-' : ''
+  const corVariacao = variacao > 0 ? 'text-primary' : variacao < 0 ? 'text-danger' : 'text-text-muted'
+
+  return (
+    <>
+      <p className="text-sm font-semibold text-white mb-2">{conta.nome}</p>
+      <InfoRow rotulo="Saldo atual" valor={formatCurrency(saldoAtual)} />
+      <InfoRow rotulo="Variação" valor={`${sinal}${formatCurrency(Math.abs(variacao))}`} cor={corVariacao} />
+      <div className="border-t border-gray-800 my-2" />
+      <InfoRow rotulo="Saldo após salvar" valor={formatCurrency(saldoDepois)} destaque cor={saldoDepois < 0 ? 'text-danger' : 'text-white'} />
+      {saldoDepois < 0 && <p className="text-xs text-danger mt-2">A conta vai ficar negativa.</p>}
+    </>
+  )
+}
+
+// Como a despesa afeta o orçamento da categoria no mês (se existir um)
+function ImpactoNoOrcamento({ orcamentos, outras, valores }) {
+  const mes = valores.data.slice(0, 7)
+  const orcamento = orcamentos.find((o) => o.mes === mes && o.categoria === valores.categoria)
+
+  return (
+    <PreviewSection titulo={`Orçamento de ${formatMonth(mes, { month: 'long' }).toLowerCase()}`} icon={ChartBar}>
+      <InfoCard>
+        {orcamento ? (
+          <UsoDoOrcamento orcamento={orcamento} outras={outras} valores={valores} mes={mes} />
+        ) : (
+          <p className="text-sm text-text-muted">
+            Você não tem orçamento para <span className="text-white">{valores.categoria}</span> neste mês.
+          </p>
+        )}
+      </InfoCard>
+    </PreviewSection>
+  )
+}
+
+function UsoDoOrcamento({ orcamento, outras, valores, mes }) {
+  const gastoDepois = gastoNaCategoria(outras, valores.categoria, mes) + (Number(valores.valor) || 0)
+  const percentual = (gastoDepois / orcamento.limite) * 100
+  const cor = corDoUso(percentual)
+
+  return (
+    <>
+      <div className="flex justify-between text-sm mb-2">
+        <span className="text-white font-medium">{valores.categoria}</span>
+        <span className="font-semibold" style={{ color: cor }}>
+          {Math.round(percentual)}%
+        </span>
+      </div>
+      <ProgressBar valor={gastoDepois} max={orcamento.limite} cor={cor} label={`Orçamento de ${valores.categoria}`} />
+      <p className="text-xs text-text-muted mt-2">
+        {formatCurrency(gastoDepois)} de {formatCurrency(orcamento.limite)} após salvar
+        {percentual > 100 && <span className="text-danger"> · estoura o limite</span>}
+      </p>
     </>
   )
 }

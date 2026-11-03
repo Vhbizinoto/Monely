@@ -1,7 +1,8 @@
-import { useEffect, useRef, useState } from 'react'
+import { useCallback, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { CaretDown, Gear, SignOut } from '@phosphor-icons/react'
 import { useAuth } from '../../contexts/AuthContext'
+import useClickOutside from '../../hooks/useClickOutside'
 
 const iniciais = (nome = '') =>
   nome
@@ -15,15 +16,8 @@ export default function UserMenu() {
   const { usuario, logout } = useAuth()
   const navigate = useNavigate()
   const [aberto, setAberto] = useState(false)
-  const ref = useRef(null)
-
-  // Fecha o menu ao clicar fora
-  useEffect(() => {
-    if (!aberto) return
-    const fechar = (e) => !ref.current?.contains(e.target) && setAberto(false)
-    document.addEventListener('mousedown', fechar)
-    return () => document.removeEventListener('mousedown', fechar)
-  }, [aberto])
+  const fechar = useCallback(() => setAberto(false), [])
+  const ref = useClickOutside(aberto, fechar)
 
   const sair = () => {
     logout()
@@ -34,7 +28,7 @@ export default function UserMenu() {
     <div className="relative" ref={ref}>
       <button
         onClick={() => setAberto((a) => !a)}
-        className="flex items-center gap-3 rounded-lg p-1 pr-2 hover:bg-gray-800/50 transition-colors focus:outline-none focus:ring-2 focus:ring-primary"
+        className="flex items-center gap-3 rounded-lg p-1 pr-2 hover:bg-gray-800/50 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
         aria-haspopup="menu"
         aria-expanded={aberto}
       >

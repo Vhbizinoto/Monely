@@ -1,4 +1,5 @@
 import { useId } from 'react'
+import { CaretDown } from '@phosphor-icons/react'
 
 const BASE =
   'w-full bg-background border rounded-lg px-4 py-2.5 text-sm text-white placeholder:text-gray-500 transition-colors focus:outline-none focus:ring-2 focus:ring-primary/60 focus:border-primary'
@@ -48,20 +49,23 @@ export function Select({ label, error, hint, options, placeholder, className = '
   const id = useId()
   return (
     <Field label={label} error={error} hint={hint} id={id}>
-      <select
-        id={id}
-        aria-invalid={Boolean(error)}
-        aria-describedby={error ? `${id}-erro` : undefined}
-        className={`${BASE} ${error ? 'border-danger' : 'border-gray-700'} ${className}`}
-        {...props}
-      >
-        {placeholder && <option value="">{placeholder}</option>}
-        {options.map((opcao) => (
-          <option key={opcao.value} value={opcao.value}>
-            {opcao.label}
-          </option>
-        ))}
-      </select>
+      <div className="relative">
+        <select
+          id={id}
+          aria-invalid={Boolean(error)}
+          aria-describedby={error ? `${id}-erro` : undefined}
+          className={`${BASE} cursor-pointer pr-10 ${error ? 'border-danger' : 'border-gray-700'} ${className}`}
+          {...props}
+        >
+          {placeholder && <option value="">{placeholder}</option>}
+          {options.map((opcao) => (
+            <option key={opcao.value} value={opcao.value}>
+              {opcao.label}
+            </option>
+          ))}
+        </select>
+        <CaretDown size={16} className="absolute right-3 top-1/2 -translate-y-1/2 text-text-muted pointer-events-none" />
+      </div>
     </Field>
   )
 }

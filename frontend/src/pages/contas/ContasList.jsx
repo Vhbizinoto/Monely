@@ -1,11 +1,11 @@
 import { Plus, Wallet } from '@phosphor-icons/react'
+import ContaCard from '../../components/contas/ContaCard'
 import PageHeader from '../../components/layout/PageHeader'
 import Button from '../../components/ui/Button'
 import Card from '../../components/ui/Card'
 import ConfirmDialog from '../../components/ui/ConfirmDialog'
 import { EmptyState, ErrorState, Loading } from '../../components/ui/Feedback'
 import RowActions from '../../components/ui/RowActions'
-import { getTipoConta } from '../../constants/contas'
 import useFetch from '../../hooks/useFetch'
 import useRemocao from '../../hooks/useRemocao'
 import contaService from '../../services/contaService'
@@ -65,34 +65,14 @@ export default function ContasList() {
           </Card>
 
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
-            {contas.map((conta) => {
-              const tipo = getTipoConta(conta.tipo)
-              const Icone = tipo.icone
-              return (
-                <Card key={conta.id}>
-                  <div className="flex justify-between items-start mb-6">
-                    <div className="flex items-center gap-3">
-                      <div className="w-11 h-11 rounded-xl bg-primary-bg text-primary flex items-center justify-center">
-                        <Icone size={22} />
-                      </div>
-                      <div>
-                        <h3 className="font-semibold text-white">{conta.nome}</h3>
-                        <p className="text-xs text-text-muted">
-                          {tipo.nome}
-                          {conta.instituicao && ` · ${conta.instituicao}`}
-                        </p>
-                      </div>
-                    </div>
-                    <RowActions editarPara={`/contas/${conta.id}/editar`} onRemover={() => pedirRemocao(conta)} nome={conta.nome} />
-                  </div>
-                  <p className="text-sm text-text-muted mb-1">Saldo atual</p>
-                  <p className={`text-2xl font-bold ${saldos[conta.id] >= 0 ? 'text-white' : 'text-danger'}`}>
-                    {formatCurrency(saldos[conta.id])}
-                  </p>
-                  <p className="text-xs text-text-muted mt-2">Saldo inicial: {formatCurrency(conta.saldoInicial)}</p>
-                </Card>
-              )
-            })}
+            {contas.map((conta) => (
+              <ContaCard
+                key={conta.id}
+                conta={conta}
+                saldo={saldos[conta.id]}
+                acoes={<RowActions editarPara={`/contas/${conta.id}/editar`} onRemover={() => pedirRemocao(conta)} nome={conta.nome} />}
+              />
+            ))}
           </div>
         </>
       )}

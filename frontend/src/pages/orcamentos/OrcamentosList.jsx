@@ -1,9 +1,9 @@
 import { useSearchParams } from 'react-router-dom'
 import { CaretLeft, CaretRight, ChartBar, Plus } from '@phosphor-icons/react'
 import PageHeader from '../../components/layout/PageHeader'
+import OrcamentoCard from '../../components/orcamentos/OrcamentoCard'
 import Button from '../../components/ui/Button'
 import Card from '../../components/ui/Card'
-import CategoryIcon from '../../components/ui/CategoryIcon'
 import ConfirmDialog from '../../components/ui/ConfirmDialog'
 import { EmptyState, ErrorState, Loading } from '../../components/ui/Feedback'
 import ProgressBar from '../../components/ui/ProgressBar'
@@ -12,16 +12,13 @@ import useFetch from '../../hooks/useFetch'
 import useRemocao from '../../hooks/useRemocao'
 import orcamentoService from '../../services/orcamentoService'
 import transacaoService from '../../services/transacaoService'
-import { doMes } from '../../utils/finance'
+import { corDoUso, doMes } from '../../utils/finance'
 import { currentMonth, formatCurrency, formatMonth, shiftMonth } from '../../utils/format'
 
 const carregar = async () => {
   const [orcamentos, transacoes] = await Promise.all([orcamentoService.listar(), transacaoService.listar({ tipo: 'DESPESA' })])
   return { orcamentos, transacoes }
 }
-
-// Verde até 75% do limite, laranja até 100%, vermelho acima
-const corDoUso = (percentual) => (percentual > 100 ? '#FF4D4D' : percentual > 75 ? '#F59E0B' : '#00E08F')
 
 export default function OrcamentosList() {
   const { data, setData, loading, error, reload } = useFetch(carregar)
@@ -46,7 +43,7 @@ export default function OrcamentosList() {
   if (loading) return <>{header}<Loading /></>
   if (error) return <>{header}<ErrorState mensagem={error} onRetry={reload} /></>
 
-  const gastosDoMes = doMes(data.transacoes, mes)
+  const gastosDoMes = doMes(data.transacoes, mes).filter((t) => t.tipo === 'DESPESA')
   const orcamentos = data.orcamentos
     .filter((o) => o.mes === mes)
     .map((o) => {
@@ -98,28 +95,13 @@ export default function OrcamentosList() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {orcamentos.map((o) => (
-              <Card key={o.id}>
-                <div className="flex justify-between items-start mb-5">
-                  <div className="flex items-center gap-3">
-                    <CategoryIcon categoria={o.categoria} />
-                    <div>
-                      <h3 className="font-semibold text-white">{o.categoria}</h3>
-                      <p className="text-xs text-text-muted">Limite de {formatCurrency(o.limite)}</p>
-                    </div>
-                  </div>
-                  <RowActions editarPara={`/orcamentos/${o.id}/editar`} onRemover={() => pedirRemocao(o)} nome={`orçamento de ${o.categoria}`} />
-                </div>
-                <div className="flex justify-between text-sm mb-2">
-                  <span className="text-white font-medium">{formatCurrency(o.gasto)}</span>
-                  <span style={{ color: corDoUso(o.percentual) }} className="font-semibold">
-                    {Math.round(o.percentual)}%
-                  </span>
-                </div>
-                <ProgressBar valor={o.gasto} max={o.limite} cor={corDoUso(o.percentual)} label={`Uso do orçamento de ${o.categoria}`} />
-                <p className="text-xs text-text-muted mt-2">
-                  {o.gasto <= o.limite ? `Disponível: ${formatCurrency(o.limite - o.gasto)}` : `Acima do limite em ${formatCurrency(o.gasto - o.limite)}`}
-                </p>
-              </Card>
+              <OrcamentoCard
+                key={o.id}
+                categoria={o.categoria}
+                limite={o.limite}
+                gasto={o.gasto}
+                acoes={<RowActions editarPara={`/orcamentos/${o.id}/editar`} onRemover={() => pedirRemocao(o)} nome={`orçamento de ${o.categoria}`} />}
+              />
             ))}
           </div>
         </>
