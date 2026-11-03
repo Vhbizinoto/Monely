@@ -1,0 +1,704 @@
+{
+  "usuarios": [
+    {
+      "id": 1,
+      "nome": "Vitor Hugo",
+      "email": "vitor@fiap.com.br",
+      "senha": "123456"
+    }
+  ],
+  "contas": [
+    {
+      "id": 1,
+      "usuarioId": 1,
+      "nome": "Conta Corrente",
+      "tipo": "CORRENTE",
+      "instituicao": "Nubank",
+      "saldoInicial": 2500
+    },
+    {
+      "id": 2,
+      "usuarioId": 1,
+      "nome": "Poupança",
+      "tipo": "POUPANCA",
+      "instituicao": "Itaú",
+      "saldoInicial": 4000
+    },
+    {
+      "id": 3,
+      "usuarioId": 1,
+      "nome": "Carteira",
+      "tipo": "CARTEIRA",
+      "instituicao": "",
+      "saldoInicial": 150
+    }
+  ],
+  "transacoes": [
+    {
+      "id": 1,
+      "usuarioId": 1,
+      "contaId": 1,
+      "descricao": "Salário",
+      "valor": 5250,
+      "tipo": "RECEITA",
+      "categoria": "Salário",
+      "data": "2026-06-05"
+    },
+    {
+      "id": 2,
+      "usuarioId": 1,
+      "contaId": 1,
+      "descricao": "Aluguel",
+      "valor": 1600,
+      "tipo": "DESPESA",
+      "categoria": "Moradia",
+      "data": "2026-06-06"
+    },
+    {
+      "id": 3,
+      "usuarioId": 1,
+      "contaId": 1,
+      "descricao": "Conta de luz",
+      "valor": 176,
+      "tipo": "DESPESA",
+      "categoria": "Moradia",
+      "data": "2026-06-10"
+    },
+    {
+      "id": 4,
+      "usuarioId": 1,
+      "contaId": 1,
+      "descricao": "Supermercado",
+      "valor": 744,
+      "tipo": "DESPESA",
+      "categoria": "Alimentação",
+      "data": "2026-06-12"
+    },
+    {
+      "id": 5,
+      "usuarioId": 1,
+      "contaId": 3,
+      "descricao": "Restaurante",
+      "valor": 144,
+      "tipo": "DESPESA",
+      "categoria": "Alimentação",
+      "data": "2026-06-18"
+    },
+    {
+      "id": 6,
+      "usuarioId": 1,
+      "contaId": 1,
+      "descricao": "Combustível",
+      "valor": 270,
+      "tipo": "DESPESA",
+      "categoria": "Transporte",
+      "data": "2026-06-15"
+    },
+    {
+      "id": 7,
+      "usuarioId": 1,
+      "contaId": 1,
+      "descricao": "Uber",
+      "valor": 95,
+      "tipo": "DESPESA",
+      "categoria": "Transporte",
+      "data": "2026-06-21"
+    },
+    {
+      "id": 8,
+      "usuarioId": 1,
+      "contaId": 3,
+      "descricao": "Farmácia",
+      "valor": 132,
+      "tipo": "DESPESA",
+      "categoria": "Saúde",
+      "data": "2026-06-08"
+    },
+    {
+      "id": 9,
+      "usuarioId": 1,
+      "contaId": 1,
+      "descricao": "Academia",
+      "valor": 110,
+      "tipo": "DESPESA",
+      "categoria": "Saúde",
+      "data": "2026-06-03"
+    },
+    {
+      "id": 10,
+      "usuarioId": 1,
+      "contaId": 1,
+      "descricao": "Streaming",
+      "valor": 55.9,
+      "tipo": "DESPESA",
+      "categoria": "Lazer",
+      "data": "2026-06-14"
+    },
+    {
+      "id": 11,
+      "usuarioId": 1,
+      "contaId": 2,
+      "descricao": "Rendimento poupança",
+      "valor": 28,
+      "tipo": "RECEITA",
+      "categoria": "Investimentos",
+      "data": "2026-06-28"
+    },
+    {
+      "id": 12,
+      "usuarioId": 1,
+      "contaId": 1,
+      "descricao": "Salário",
+      "valor": 5250,
+      "tipo": "RECEITA",
+      "categoria": "Salário",
+      "data": "2026-07-05"
+    },
+    {
+      "id": 13,
+      "usuarioId": 1,
+      "contaId": 1,
+      "descricao": "Aluguel",
+      "valor": 1600,
+      "tipo": "DESPESA",
+      "categoria": "Moradia",
+      "data": "2026-07-06"
+    },
+    {
+      "id": 14,
+      "usuarioId": 1,
+      "contaId": 1,
+      "descricao": "Conta de luz",
+      "valor": 144,
+      "tipo": "DESPESA",
+      "categoria": "Moradia",
+      "data": "2026-07-10"
+    },
+    {
+      "id": 15,
+      "usuarioId": 1,
+      "contaId": 1,
+      "descricao": "Supermercado",
+      "valor": 620,
+      "tipo": "DESPESA",
+      "categoria": "Alimentação",
+      "data": "2026-07-12"
+    },
+    {
+      "id": 16,
+      "usuarioId": 1,
+      "contaId": 3,
+      "descricao": "Restaurante",
+      "valor": 198,
+      "tipo": "DESPESA",
+      "categoria": "Alimentação",
+      "data": "2026-07-18"
+    },
+    {
+      "id": 17,
+      "usuarioId": 1,
+      "contaId": 1,
+      "descricao": "Combustível",
+      "valor": 360,
+      "tipo": "DESPESA",
+      "categoria": "Transporte",
+      "data": "2026-07-15"
+    },
+    {
+      "id": 18,
+      "usuarioId": 1,
+      "contaId": 1,
+      "descricao": "Uber",
+      "valor": 76,
+      "tipo": "DESPESA",
+      "categoria": "Transporte",
+      "data": "2026-07-21"
+    },
+    {
+      "id": 19,
+      "usuarioId": 1,
+      "contaId": 3,
+      "descricao": "Farmácia",
+      "valor": 108,
+      "tipo": "DESPESA",
+      "categoria": "Saúde",
+      "data": "2026-07-08"
+    },
+    {
+      "id": 20,
+      "usuarioId": 1,
+      "contaId": 1,
+      "descricao": "Academia",
+      "valor": 110,
+      "tipo": "DESPESA",
+      "categoria": "Saúde",
+      "data": "2026-07-03"
+    },
+    {
+      "id": 21,
+      "usuarioId": 1,
+      "contaId": 1,
+      "descricao": "Streaming",
+      "valor": 55.9,
+      "tipo": "DESPESA",
+      "categoria": "Lazer",
+      "data": "2026-07-14"
+    },
+    {
+      "id": 22,
+      "usuarioId": 1,
+      "contaId": 2,
+      "descricao": "Rendimento poupança",
+      "valor": 28,
+      "tipo": "RECEITA",
+      "categoria": "Investimentos",
+      "data": "2026-07-28"
+    },
+    {
+      "id": 23,
+      "usuarioId": 1,
+      "contaId": 1,
+      "descricao": "Salário",
+      "valor": 5250,
+      "tipo": "RECEITA",
+      "categoria": "Salário",
+      "data": "2026-08-05"
+    },
+    {
+      "id": 24,
+      "usuarioId": 1,
+      "contaId": 1,
+      "descricao": "Aluguel",
+      "valor": 1600,
+      "tipo": "DESPESA",
+      "categoria": "Moradia",
+      "data": "2026-08-06"
+    },
+    {
+      "id": 25,
+      "usuarioId": 1,
+      "contaId": 1,
+      "descricao": "Conta de luz",
+      "valor": 192,
+      "tipo": "DESPESA",
+      "categoria": "Moradia",
+      "data": "2026-08-10"
+    },
+    {
+      "id": 26,
+      "usuarioId": 1,
+      "contaId": 1,
+      "descricao": "Supermercado",
+      "valor": 496,
+      "tipo": "DESPESA",
+      "categoria": "Alimentação",
+      "data": "2026-08-12"
+    },
+    {
+      "id": 27,
+      "usuarioId": 1,
+      "contaId": 3,
+      "descricao": "Restaurante",
+      "valor": 162,
+      "tipo": "DESPESA",
+      "categoria": "Alimentação",
+      "data": "2026-08-18"
+    },
+    {
+      "id": 28,
+      "usuarioId": 1,
+      "contaId": 1,
+      "descricao": "Combustível",
+      "valor": 300,
+      "tipo": "DESPESA",
+      "categoria": "Transporte",
+      "data": "2026-08-15"
+    },
+    {
+      "id": 29,
+      "usuarioId": 1,
+      "contaId": 1,
+      "descricao": "Uber",
+      "valor": 104.5,
+      "tipo": "DESPESA",
+      "categoria": "Transporte",
+      "data": "2026-08-21"
+    },
+    {
+      "id": 30,
+      "usuarioId": 1,
+      "contaId": 3,
+      "descricao": "Farmácia",
+      "valor": 144,
+      "tipo": "DESPESA",
+      "categoria": "Saúde",
+      "data": "2026-08-08"
+    },
+    {
+      "id": 31,
+      "usuarioId": 1,
+      "contaId": 1,
+      "descricao": "Academia",
+      "valor": 110,
+      "tipo": "DESPESA",
+      "categoria": "Saúde",
+      "data": "2026-08-03"
+    },
+    {
+      "id": 32,
+      "usuarioId": 1,
+      "contaId": 1,
+      "descricao": "Streaming",
+      "valor": 55.9,
+      "tipo": "DESPESA",
+      "categoria": "Lazer",
+      "data": "2026-08-14"
+    },
+    {
+      "id": 33,
+      "usuarioId": 1,
+      "contaId": 2,
+      "descricao": "Rendimento poupança",
+      "valor": 28,
+      "tipo": "RECEITA",
+      "categoria": "Investimentos",
+      "data": "2026-08-28"
+    },
+    {
+      "id": 34,
+      "usuarioId": 1,
+      "contaId": 1,
+      "descricao": "Salário",
+      "valor": 5250,
+      "tipo": "RECEITA",
+      "categoria": "Salário",
+      "data": "2026-09-05"
+    },
+    {
+      "id": 35,
+      "usuarioId": 1,
+      "contaId": 1,
+      "descricao": "Aluguel",
+      "valor": 1600,
+      "tipo": "DESPESA",
+      "categoria": "Moradia",
+      "data": "2026-09-06"
+    },
+    {
+      "id": 36,
+      "usuarioId": 1,
+      "contaId": 1,
+      "descricao": "Conta de luz",
+      "valor": 160,
+      "tipo": "DESPESA",
+      "categoria": "Moradia",
+      "data": "2026-09-10"
+    },
+    {
+      "id": 37,
+      "usuarioId": 1,
+      "contaId": 1,
+      "descricao": "Supermercado",
+      "valor": 682,
+      "tipo": "DESPESA",
+      "categoria": "Alimentação",
+      "data": "2026-09-12"
+    },
+    {
+      "id": 38,
+      "usuarioId": 1,
+      "contaId": 3,
+      "descricao": "Restaurante",
+      "valor": 216,
+      "tipo": "DESPESA",
+      "categoria": "Alimentação",
+      "data": "2026-09-18"
+    },
+    {
+      "id": 39,
+      "usuarioId": 1,
+      "contaId": 1,
+      "descricao": "Combustível",
+      "valor": 240,
+      "tipo": "DESPESA",
+      "categoria": "Transporte",
+      "data": "2026-09-15"
+    },
+    {
+      "id": 40,
+      "usuarioId": 1,
+      "contaId": 1,
+      "descricao": "Uber",
+      "valor": 85.5,
+      "tipo": "DESPESA",
+      "categoria": "Transporte",
+      "data": "2026-09-21"
+    },
+    {
+      "id": 41,
+      "usuarioId": 1,
+      "contaId": 3,
+      "descricao": "Farmácia",
+      "valor": 120,
+      "tipo": "DESPESA",
+      "categoria": "Saúde",
+      "data": "2026-09-08"
+    },
+    {
+      "id": 42,
+      "usuarioId": 1,
+      "contaId": 1,
+      "descricao": "Academia",
+      "valor": 110,
+      "tipo": "DESPESA",
+      "categoria": "Saúde",
+      "data": "2026-09-03"
+    },
+    {
+      "id": 43,
+      "usuarioId": 1,
+      "contaId": 1,
+      "descricao": "Streaming",
+      "valor": 55.9,
+      "tipo": "DESPESA",
+      "categoria": "Lazer",
+      "data": "2026-09-14"
+    },
+    {
+      "id": 44,
+      "usuarioId": 1,
+      "contaId": 2,
+      "descricao": "Rendimento poupança",
+      "valor": 28,
+      "tipo": "RECEITA",
+      "categoria": "Investimentos",
+      "data": "2026-09-28"
+    },
+    {
+      "id": 45,
+      "usuarioId": 1,
+      "contaId": 1,
+      "descricao": "Salário",
+      "valor": 5250,
+      "tipo": "RECEITA",
+      "categoria": "Salário",
+      "data": "2026-10-05"
+    },
+    {
+      "id": 46,
+      "usuarioId": 1,
+      "contaId": 1,
+      "descricao": "Aluguel",
+      "valor": 1600,
+      "tipo": "DESPESA",
+      "categoria": "Moradia",
+      "data": "2026-10-06"
+    },
+    {
+      "id": 47,
+      "usuarioId": 1,
+      "contaId": 1,
+      "descricao": "Conta de luz",
+      "valor": 128,
+      "tipo": "DESPESA",
+      "categoria": "Moradia",
+      "data": "2026-10-10"
+    },
+    {
+      "id": 48,
+      "usuarioId": 1,
+      "contaId": 1,
+      "descricao": "Supermercado",
+      "valor": 558,
+      "tipo": "DESPESA",
+      "categoria": "Alimentação",
+      "data": "2026-10-12"
+    },
+    {
+      "id": 49,
+      "usuarioId": 1,
+      "contaId": 3,
+      "descricao": "Restaurante",
+      "valor": 180,
+      "tipo": "DESPESA",
+      "categoria": "Alimentação",
+      "data": "2026-10-18"
+    },
+    {
+      "id": 50,
+      "usuarioId": 1,
+      "contaId": 1,
+      "descricao": "Combustível",
+      "valor": 330,
+      "tipo": "DESPESA",
+      "categoria": "Transporte",
+      "data": "2026-10-15"
+    },
+    {
+      "id": 51,
+      "usuarioId": 1,
+      "contaId": 1,
+      "descricao": "Uber",
+      "valor": 114,
+      "tipo": "DESPESA",
+      "categoria": "Transporte",
+      "data": "2026-10-21"
+    },
+    {
+      "id": 52,
+      "usuarioId": 1,
+      "contaId": 3,
+      "descricao": "Farmácia",
+      "valor": 96,
+      "tipo": "DESPESA",
+      "categoria": "Saúde",
+      "data": "2026-10-08"
+    },
+    {
+      "id": 53,
+      "usuarioId": 1,
+      "contaId": 1,
+      "descricao": "Academia",
+      "valor": 110,
+      "tipo": "DESPESA",
+      "categoria": "Saúde",
+      "data": "2026-10-03"
+    },
+    {
+      "id": 54,
+      "usuarioId": 1,
+      "contaId": 1,
+      "descricao": "Streaming",
+      "valor": 55.9,
+      "tipo": "DESPESA",
+      "categoria": "Lazer",
+      "data": "2026-10-14"
+    },
+    {
+      "id": 55,
+      "usuarioId": 1,
+      "contaId": 2,
+      "descricao": "Rendimento poupança",
+      "valor": 28,
+      "tipo": "RECEITA",
+      "categoria": "Investimentos",
+      "data": "2026-10-28"
+    },
+    {
+      "id": 56,
+      "usuarioId": 1,
+      "contaId": 1,
+      "descricao": "Freelance Projeto",
+      "valor": 1000,
+      "tipo": "RECEITA",
+      "categoria": "Trabalho",
+      "data": "2026-10-05"
+    },
+    {
+      "id": 57,
+      "usuarioId": 1,
+      "contaId": 1,
+      "descricao": "Show",
+      "valor": 350,
+      "tipo": "DESPESA",
+      "categoria": "Lazer",
+      "data": "2026-10-15"
+    },
+    {
+      "id": 58,
+      "usuarioId": 1,
+      "contaId": 1,
+      "descricao": "Curso de React",
+      "valor": 250,
+      "tipo": "DESPESA",
+      "categoria": "Educação",
+      "data": "2026-10-20"
+    },
+    {
+      "id": 59,
+      "usuarioId": 1,
+      "contaId": 1,
+      "descricao": "Supermercado Teste",
+      "valor": 198.5,
+      "tipo": "DESPESA",
+      "categoria": "Alimentação",
+      "data": "2026-10-28"
+    },
+    {
+      "id": 60,
+      "usuarioId": 1,
+      "contaId": 1,
+      "descricao": "Freelance Site",
+      "valor": 800,
+      "tipo": "RECEITA",
+      "categoria": "Trabalho",
+      "data": "2026-08-22"
+    },
+    {
+      "id": 61,
+      "usuarioId": 1,
+      "contaId": 1,
+      "descricao": "Presente",
+      "valor": 220,
+      "tipo": "DESPESA",
+      "categoria": "Compras",
+      "data": "2026-09-19"
+    }
+  ],
+  "metas": [
+    {
+      "id": 1,
+      "usuarioId": 1,
+      "nome": "Reserva de emergência",
+      "valorAlvo": 15000,
+      "valorAtual": 6200,
+      "prazo": "2027-06-30"
+    },
+    {
+      "id": 2,
+      "usuarioId": 1,
+      "nome": "Viagem de formatura",
+      "valorAlvo": 5000,
+      "valorAtual": 3800,
+      "prazo": "2026-12-15"
+    },
+    {
+      "id": 3,
+      "usuarioId": 1,
+      "nome": "Notebook novo",
+      "valorAlvo": 7000,
+      "valorAtual": 1200,
+      "prazo": "2027-03-01"
+    }
+  ],
+  "orcamentos": [
+    {
+      "id": 1,
+      "usuarioId": 1,
+      "categoria": "Alimentação",
+      "limite": 1000,
+      "mes": "2026-10"
+    },
+    {
+      "id": 2,
+      "usuarioId": 1,
+      "categoria": "Transporte",
+      "limite": 450,
+      "mes": "2026-10"
+    },
+    {
+      "id": 3,
+      "usuarioId": 1,
+      "categoria": "Lazer",
+      "limite": 300,
+      "mes": "2026-10"
+    },
+    {
+      "id": 4,
+      "usuarioId": 1,
+      "categoria": "Moradia",
+      "limite": 1900,
+      "mes": "2026-10"
+    }
+  ]
+}

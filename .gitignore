@@ -1,0 +1,28 @@
+# Dependências
+node_modules/
+
+# Builds
+dist/
+build/
+target/
+out/
+
+# Variáveis de ambiente (manter só os .env.example)
+.env
+.env.*
+!.env.example
+
+# Logs
+*.log
+npm-debug.log*
+
+# Banco local da API fake (recriado a partir do db.seed.json)
+frontend/mock-server/db.json
+
+# IDEs e sistema
+.idea/
+.vscode/*
+!.vscode/extensions.json
+*.iml
+.DS_Store
+Thumbs.db
